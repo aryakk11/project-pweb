@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 class Product extends Model
 {
     use HasFactory;
-    protected $fillable= [
+    protected $fillable = [
         "name",
         "price",
         "discount",
@@ -21,8 +21,7 @@ class Product extends Model
     protected function image(): Attribute
     {
         return Attribute::make(
-            get: fn ($image) => url('/storage/posts/' . $image),
+            get: fn($image) => url('/storage/products/' . $image),
         );
     }
 }
-
