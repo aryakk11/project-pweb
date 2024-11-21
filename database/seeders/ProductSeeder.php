@@ -20,15 +20,15 @@ class ProductSeeder extends Seeder
                 'discount' => 1000,
                 'stock' => 100,
                 'description' => 'Minyak Bimoli',
-                'image_path' => 'seed/bimoli.jpg'
+                'image_path' => 'seed/bimoli.jpeg'
             ],
             [
                 'name' => 'Gulaku',
                 'price' => 200000,
-                'discount' => 15,
+                'discount' => 1500,
                 'stock' => 50,
                 'description' => 'Gulaku',
-                'image_path' => 'seed/gulaku.jpg'
+                'image_path' => 'seed/gulaku.jpeg'
             ],
             [
                 'name' => 'Sabun Batang Lux',
@@ -36,12 +36,12 @@ class ProductSeeder extends Seeder
                 'discount' => 0,
                 'stock' => 100,
                 'description' => 'Sabun Batang Lux',
-                'image_path' => 'seed/lux.jpg'
+                'image_path' => 'seed/lux.jpeg'
             ],
             [
                 'name' => 'Sampo Pantene',
                 'price' => 10000,
-                'discount' => 0,
+                'discount' => 1000,
                 'stock' => 100,
                 'description' => 'Sampo Pantene',
                 'image_path' => 'seed/pantene.jpg'
@@ -61,6 +61,30 @@ class ProductSeeder extends Seeder
                 'stock' => 100,
                 'description' => 'Tepung Terigu Segitiga Biru',
                 'image_path' => 'seed/tepung-segitiga-biru.jpg'
+            ],
+            [
+                'name' => 'Indomie Rendang',
+                'price' => 5000,
+                'discount' => 0,
+                'stock' => 100,
+                'description' => 'Indomie Rendang',
+                'image_path' => 'seed/indomie-rendang.png'
+            ],
+            [
+                'name' => 'Aqua 600ml',
+                'price' => 5000,
+                'discount' => 0,
+                'stock' => 100,
+                'description' => 'Aqua 600ml',
+                'image_path' => 'seed/aqua-600.jpg'
+            ],
+            [
+                'name' => 'Kopi Kapal Api',
+                'price' => 10000,
+                'discount' => 1000,
+                'stock' => 100,
+                'description' => 'Kopi Kapal Api',
+                'image_path' => 'seed/kapal-api.jpeg'
             ],
         ];
 

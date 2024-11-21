@@ -13,13 +13,35 @@ use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        //get all posts
-        $Products = Product::all();
+        // Start with a base query
+        $query = Product::query();
 
-        //return collection of posts as a resource
-        return new ProductResource(true, 'List Data Posts', $Products);
+        // Check if discount filter is applied
+        if ($request->has('discount')) {
+            $query->where('discount', '>', 0);
+        }
+
+        // Apply min price filter
+        if ($request->has('min_price')) {
+            $query->where('price', '>=', $request->min_price);
+        }
+
+        // Apply max price filter
+        if ($request->has('max_price')) {
+            $query->where('price', '<=', $request->max_price);
+        }
+
+        // Apply price sorting
+        if ($request->has('sort_price')) {
+            $direction = strtolower($request->sort_price) === 'desc' ? 'desc' : 'asc';
+            $query->orderBy('price', $direction);
+        }
+
+        $products = $query->get();
+
+        return new ProductResource(true, 'List Data Products', $products);
     }
 
 
