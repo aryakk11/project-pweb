@@ -100,4 +100,16 @@ class TransactionController extends Controller
             'data' => $transaction->load('items.product')
         ]);
     }
+
+    public function adminIndex()
+    {
+        $transactions = Transaction::with(['items.product', 'user'])
+            ->get();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Transactions retrieved successfully',
+            'data' => $transactions
+        ]);
+    }
 }
