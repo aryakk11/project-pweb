@@ -26,15 +26,23 @@ class CartController extends Controller
             'quantity' => 'required|integer|min:1'
         ]);
 
-        $cart = Cart::updateOrCreate(
-            [
+        $cart = Cart::where([
+            'user_id' => Auth::id(),
+            'product_id' => $validated['product_id']
+        ])->first();
+
+        // check if cart item exists
+        if ($cart) {
+            $cart->update([
+                'quantity' => $cart->quantity + $validated['quantity']
+            ]);
+        } else {
+            $cart = Cart::create([
                 'user_id' => Auth::id(),
-                'product_id' => $validated['product_id']
-            ],
-            [
+                'product_id' => $validated['product_id'],
                 'quantity' => $validated['quantity']
-            ]
-        );
+            ]);
+        }
 
         return new CartResource(true, 'Product added to cart successfully', $cart->load('product'));
     }
