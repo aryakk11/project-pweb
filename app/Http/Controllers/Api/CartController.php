@@ -26,6 +26,12 @@ class CartController extends Controller
             'quantity' => 'required|integer|min:1'
         ]);
 
+        if (Auth::user()->role == 'admin') {
+            return response()->json([
+                'message' => 'Admin tidak boleh menambahkan produk ke keranjang'
+            ], 403);
+        }
+
         $cart = Cart::where([
             'user_id' => Auth::id(),
             'product_id' => $validated['product_id']
