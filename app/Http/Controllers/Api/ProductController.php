@@ -33,6 +33,15 @@ class ProductController extends Controller
             $query->where('price', '<=', $request->max_price);
         }
 
+        // Apply search functionality
+        if ($request->has('search')) {
+            $searchTerm = $request->search;
+            $query->where(function ($q) use ($searchTerm) {
+                $q->where('name', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('description', 'like', '%' . $searchTerm . '%');
+            });
+        }
+
         // Apply price sorting
         if ($request->has('sort_price')) {
             $direction = strtolower($request->sort_price) === 'desc' ? 'desc' : 'asc';
